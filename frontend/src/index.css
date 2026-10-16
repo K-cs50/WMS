@@ -1,0 +1,493 @@
+@import "tailwindcss";
+
+:root {
+  /* Editorial Civic-Tech Color Palette */
+  --color-ink: #172B32;
+  --color-paper: #F4F1E9;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #EDE9DF;
+  --color-teal: #167D78;
+  --color-teal-light: #E6F3F2;
+  --color-orange: #D96B3B;
+  --color-orange-light: #FDF1EA;
+  --color-slate: #75858A;
+  --color-slate-light: #EAECEB;
+  --color-red: #B93838;
+  --color-red-light: #FCE8E8;
+  --color-border: #DED8CA;
+  --color-border-subtle: #EAE5D9;
+
+  /* Backward Compatibility Aliases */
+  --color-primary: #172B32;
+  --color-secondary: #167D78;
+  --color-accent: #D96B3B;
+  --color-bg: #F4F1E9;
+  --color-card: #FFFFFF;
+  --color-success: #167D78;
+  --color-warning: #D96B3B;
+  --color-critical: #B93838;
+  --color-text: #172B32;
+  --color-muted: #75858A;
+
+  /* Typographic Stacks */
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  /* Alias for inline styles that use var(--font-display) */
+  --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  /* Alias for inline styles that use var(--border-color) */
+  --border-color: #DED8CA;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  margin: 0;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Extensions */
+.font-display {
+  font-family: var(--font-serif);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.micro-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-slate);
+}
+
+/* Structural Editorial Cards (Replaces Generic SaaS Bubbles) */
+.card {
+  background: var(--color-surface);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px rgba(23, 43, 50, 0.04);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.card-subtle {
+  background: var(--color-surface-subtle);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  padding: 1.25rem;
+}
+
+.card-ink {
+  background: var(--color-ink);
+  color: #F4F1E9;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.5rem;
+}
+
+/* Operations Room & Swiss Grid Rules */
+.ops-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 1.25rem 0;
+}
+
+.ops-divider-double {
+  border: none;
+  border-top: 3px double var(--color-border);
+  margin: 1.5rem 0;
+}
+
+/* Leaflet Container Styling for Infrastructure Map */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 3px;
+  z-index: 0;
+  background: #EAE5D9;
+}
+
+/* Tabular Numerals Scrollbars */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--color-paper); }
+::-webkit-scrollbar-thumb { background: #C5BFB0; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #A8A190; }
+
+/* Status Colors & Tokens */
+.status-official {
+  background: #E6F3F2;
+  color: #167D78;
+  border: 1px solid #B8DDD9;
+}
+
+.status-community {
+  background: #EAF5ED;
+  color: #1F7A3F;
+  border: 1px solid #BEE3C8;
+}
+
+.status-urgent {
+  background: #FDF1EA;
+  color: #D96B3B;
+  border: 1px solid #F6CEB9;
+}
+
+.status-critical {
+  background: #FCE8E8;
+  color: #B93838;
+  border: 1px solid #F5B8B8;
+}
+
+.status-muted {
+  background: #EAECEB;
+  color: #75858A;
+  border: 1px solid #D1D6D5;
+}
+
+/* Buttons: Firm, Authoritative, Architectural */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 3px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.825rem;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+  border: 1px solid transparent;
+  text-decoration: none;
+  letter-spacing: -0.005em;
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: #F4F1E9;
+  border-color: var(--color-ink);
+}
+.btn-primary:hover {
+  background: #253F48;
+  border-color: #253F48;
+}
+
+.btn-teal {
+  background: var(--color-teal);
+  color: #FFFFFF;
+  border-color: var(--color-teal);
+}
+.btn-teal:hover {
+  background: #11625E;
+}
+
+.btn-orange {
+  background: var(--color-orange);
+  color: #FFFFFF;
+  border-color: var(--color-orange);
+}
+.btn-orange:hover {
+  background: #BE5628;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-border);
+}
+.btn-outline:hover {
+  background: rgba(23, 43, 50, 0.04);
+  border-color: var(--color-ink);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-slate);
+}
+.btn-ghost:hover {
+  background: rgba(23, 43, 50, 0.05);
+  color: var(--color-ink);
+}
+
+.btn-danger {
+  background: var(--color-red);
+  color: white;
+  border-color: var(--color-red);
+}
+.btn-danger:hover {
+  background: #9D2C2C;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Forms: Clean Editorial Structure */
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  font-size: 0.875rem;
+  background: #FFFFFF;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  transition: border-color 0.12s ease;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--color-teal);
+  box-shadow: 0 0 0 1px var(--color-teal);
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-slate);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Tabular Numerals utility */
+.tabular-num {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: 2px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Status Badge — editorial pill used across pages */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Badge colour variants */
+.badge-active {
+  background: #E6F3F2;
+  color: #167D78;
+  border: 1px solid #B8DDD9;
+}
+
+.badge-verified {
+  background: #E6F3F2;
+  color: #167D78;
+  border: 1px solid #B8DDD9;
+}
+
+.badge-stale {
+  background: #FDF1EA;
+  color: #D96B3B;
+  border: 1px solid #F6CEB9;
+}
+
+.badge-warning {
+  background: #FDF1EA;
+  color: #D96B3B;
+  border: 1px solid #F6CEB9;
+}
+
+.badge-disabled {
+  background: #EAECEB;
+  color: #75858A;
+  border: 1px solid #D1D6D5;
+}
+
+.badge-secondary {
+  background: #EAECEB;
+  color: #75858A;
+  border: 1px solid #D1D6D5;
+}
+
+.badge-success {
+  background: #E6F3F2;
+  color: #167D78;
+  border: 1px solid #B8DDD9;
+}
+
+.badge-danger {
+  background: #FCE8E8;
+  color: #B93838;
+  border: 1px solid #F5B8B8;
+}
+
+.badge-info {
+  background: #EAF2FB;
+  color: #1E6FBF;
+  border: 1px solid #B3D1F0;
+}
+
+.badge-critical {
+  background: #FCE8E8;
+  color: #B93838;
+  border: 1px solid #F5B8B8;
+}
+
+/* Navigation Rail (Distinctive Ink Rail) */
+.nav-rail {
+  width: 250px;
+  min-height: 100vh;
+  background: var(--color-ink);
+  color: #F4F1E9;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-rail-link {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 3px;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: rgba(244, 241, 233, 0.72);
+  text-decoration: none;
+  transition: all 0.12s ease;
+  border-left: 2px solid transparent;
+  margin-bottom: 1px;
+}
+
+.nav-rail-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+}
+
+.nav-rail-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-left: 2px solid var(--color-teal);
+  font-weight: 700;
+}
+
+.nav-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(244, 241, 233, 0.4);
+  padding: 0.75rem 0.9rem 0.25rem;
+}
+
+.main-content {
+  margin-left: 250px;
+  min-height: 100vh;
+  padding: 2rem 2.5rem;
+  background: var(--color-paper);
+}
+
+@media (max-width: 900px) {
+  .nav-rail { width: 100%; min-height: auto; position: relative; }
+  .main-content { margin-left: 0; padding: 1.25rem; }
+}
+
+/* Tabular Technical Grids */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.825rem;
+}
+
+.data-table th {
+  background: var(--color-surface-subtle);
+  padding: 0.65rem 0.85rem;
+  text-align: left;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.7rem;
+  color: var(--color-slate);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.data-table td {
+  padding: 0.75rem 0.85rem;
+  border-bottom: 1px solid var(--color-border-subtle);
+  vertical-align: middle;
+}
+
+.data-table tr:hover td {
+  background: rgba(23, 43, 50, 0.02);
+}
+
+/* Spin animation for loading spinners */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Official Gazette Bulletin Header */
+.gazette-masthead {
+  border-bottom: 2px solid var(--color-ink);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.gazette-title {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.gazette-sub {
+  font-size: 0.875rem;
+  color: var(--color-slate);
+  margin-top: 0.25rem;
+}
