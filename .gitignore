@@ -54,3 +54,7 @@ Thumbs.db
 .vscode/
 *.swp
 *.swo
+
+# Vercel
+.vercel/
+
