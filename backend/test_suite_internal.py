@@ -128,8 +128,29 @@ async def run_internal_tests():
         assert len(provs) > 0
         print(f"13. Tanker Marketplace: SUCCESS ({len(provs)} providers active and verified)")
 
+        # 14. ML Model Governance & Meteorological Constraints
+        ml_metrics_res = await client.get("/api/ml/metrics")
+        assert ml_metrics_res.status_code == 200, f"ML metrics failed: {ml_metrics_res.text}"
+        metrics_data = ml_metrics_res.json()
+        assert "final_test_metrics" in metrics_data
+        assert "meteorological_feature_importances" in metrics_data
+        print(f"14. ML Governance & Provenance: SUCCESS (Model: {metrics_data['model_name']}, Test MAE: {metrics_data['final_test_metrics']['mae']})")
+
+        # 15. Real-Time Weather-Constrained ML Inference
+        ml_pred_res = await client.post("/api/ml/predict-stress", json={
+            "locality_name": "Kondapur",
+            "temperature_c": 41.5,
+            "rainfall_mm": 0.0,
+            "humidity_pct": 35.0
+        })
+        assert ml_pred_res.status_code == 200, f"ML predict failed: {ml_pred_res.text}"
+        pred_data = ml_pred_res.json()
+        assert "predicted_water_stress_index" in pred_data
+        assert "recommended_tanker_buffer_units" in pred_data
+        print(f"15. Weather-Constrained ML Inference: SUCCESS (Stress: {pred_data['predicted_water_stress_index']}, Tankers: {pred_data['recommended_tanker_buffer_units']}, Heat Wave: {pred_data['meteorological_constraints']['heat_wave_active']})")
+
         print("=" * 60)
-        print("ALL 13 TESTS PASSED PERFECTLY!")
+        print("ALL 15 TESTS PASSED PERFECTLY!")
         print("=" * 60)
 
 if __name__ == "__main__":

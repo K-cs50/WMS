@@ -135,3 +135,10 @@ export const adminAPI = {
 export const assistantAPI = {
   chat: (data: any) => api.post('/assistant/chat', data),
 }
+
+// Machine Learning & Weather-Constrained Forecasting
+export const mlAPI = {
+  metrics: () => api.get('/ml/metrics'),
+  predictStress: (data: any) => api.post('/ml/predict-stress', data),
+  wardForecast: () => api.get('/ml/ward-forecast'),
+}

@@ -54,6 +54,7 @@ export default function BookTankerPage() {
   // Live Location & Nearest Tanker state
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null)
   const [showLiveMap, setShowLiveMap] = useState(false)
+  const [tankerBasemap, setTankerBasemap] = useState<'earth' | 'street'>('earth')
   const [gpsLoading, setGpsLoading] = useState(false)
   const [gpsError, setGpsError] = useState('')
   const [nearestProvider, setNearestProvider] = useState<any>(null)
@@ -398,13 +399,39 @@ export default function BookTankerPage() {
                     </span>
                   )}
                 </div>
-                <button
-                  onClick={() => setShowLiveMap(false)}
-                  className="btn btn-outline"
-                  style={{ fontSize: '0.75rem', padding: '0.25rem 0.6rem' }}
-                >
-                  <X size={12} /> Hide Map
-                </button>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', background: '#FFFFFF', border: '1px solid var(--border-color)', borderRadius: '3px', padding: '2px' }}>
+                    <button
+                      onClick={() => setTankerBasemap('earth')}
+                      style={{
+                        background: tankerBasemap === 'earth' ? 'var(--color-teal)' : 'transparent',
+                        color: tankerBasemap === 'earth' ? '#FFFFFF' : 'var(--color-ink)',
+                        border: 'none', borderRadius: '2px', padding: '2px 7px', fontSize: '0.7rem', fontWeight: 700, cursor: 'pointer'
+                      }}
+                      title="Google Earth Satellite Imagery"
+                    >
+                      🛰️ Google Earth
+                    </button>
+                    <button
+                      onClick={() => setTankerBasemap('street')}
+                      style={{
+                        background: tankerBasemap === 'street' ? 'var(--color-teal)' : 'transparent',
+                        color: tankerBasemap === 'street' ? '#FFFFFF' : 'var(--color-ink)',
+                        border: 'none', borderRadius: '2px', padding: '2px 7px', fontSize: '0.7rem', fontWeight: 700, cursor: 'pointer'
+                      }}
+                      title="Civic Street (OpenStreetMap)"
+                    >
+                      🗺️ Street
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => setShowLiveMap(false)}
+                    className="btn btn-outline"
+                    style={{ fontSize: '0.75rem', padding: '0.25rem 0.6rem' }}
+                  >
+                    <X size={12} /> Hide Map
+                  </button>
+                </div>
               </div>
 
               <div style={{ height: 320, width: '100%', borderRadius: '3px', overflow: 'hidden', border: '1px solid var(--color-border)' }}>
@@ -415,8 +442,9 @@ export default function BookTankerPage() {
                   scrollWheelZoom={false}
                 >
                   <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    key={tankerBasemap}
+                    attribution={tankerBasemap === 'earth' ? '&copy; Google Earth & Imagery Providers' : '&copy; OpenStreetMap contributors'}
+                    url={tankerBasemap === 'earth' ? 'https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}' : 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
                   />
                   <MapController center={userLocation} />
 

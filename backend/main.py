@@ -12,6 +12,7 @@ from routes.misc_routes import (
     notif_router, alert_router, weather_router, map_router,
     forecast_router, contact_router, sources_router, admin_router, ai_router
 )
+from routes.ml_routes import ml_router
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -37,7 +38,8 @@ app.add_middleware(
 for router in [
     auth_router, locality_router, report_router, provider_router,
     notif_router, alert_router, weather_router, map_router,
-    forecast_router, contact_router, sources_router, admin_router, ai_router
+    forecast_router, contact_router, sources_router, admin_router, ai_router,
+    ml_router
 ]:
     app.include_router(router)
 

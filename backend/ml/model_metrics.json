@@ -1,0 +1,73 @@
+{
+  "model_name": "Gradient_Boosting",
+  "trained_date": "2026-10-17T15:48:25.833537",
+  "training_samples": 4087,
+  "validation_samples": 877,
+  "test_samples": 876,
+  "model_comparison": {
+    "Baseline_Ridge": {
+      "val_mae": 0.0678,
+      "val_rmse": 0.0928,
+      "val_r2": 0.5989
+    },
+    "Random_Forest": {
+      "val_mae": 0.0419,
+      "val_rmse": 0.0533,
+      "val_r2": 0.8679
+    },
+    "Gradient_Boosting": {
+      "val_mae": 0.0414,
+      "val_rmse": 0.0522,
+      "val_r2": 0.8729
+    }
+  },
+  "final_test_metrics": {
+    "mae": 0.04,
+    "rmse": 0.0503,
+    "r2_score": 0.6254
+  },
+  "meteorological_feature_importances": {
+    "temperature_c": 0.6327,
+    "rainfall_mm": 0.2367,
+    "heat_wave_flag": 0.0672,
+    "pipeline_age_years": 0.0311,
+    "evapotranspiration_mm": 0.0225,
+    "longitude": 0.0023,
+    "elevation_m": 0.0019,
+    "humidity_pct": 0.0019,
+    "wind_speed_kmh": 0.0019,
+    "latitude": 0.0005,
+    "base_capacity_mld": 0.0005,
+    "zone_Charminar": 0.0005,
+    "zone_Begumpet": 0.0001,
+    "zone_Khairatabad": 0.0001,
+    "zone_Kukatpally": 0.0,
+    "zone_L.B. Nagar": 0.0,
+    "zone_Rajendranagar": 0.0,
+    "zone_Secunderabad": 0.0,
+    "zone_Serilingampally": 0.0,
+    "zone_Uppal": 0.0,
+    "season_Monsoon": 0.0,
+    "season_Summer": 0.0,
+    "season_Winter": 0.0
+  },
+  "input_features": {
+    "numeric": [
+      "latitude",
+      "longitude",
+      "elevation_m",
+      "pipeline_age_years",
+      "base_capacity_mld",
+      "temperature_c",
+      "humidity_pct",
+      "rainfall_mm",
+      "wind_speed_kmh",
+      "evapotranspiration_mm",
+      "heat_wave_flag"
+    ],
+    "categorical": [
+      "zone",
+      "season"
+    ]
+  }
+}
