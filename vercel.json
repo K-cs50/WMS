@@ -27,7 +27,20 @@
       "dest": "api/index.py"
     },
     {
-      "handle": "filesystem"
+      "src": "/assets/(.*)",
+      "dest": "frontend/assets/$1"
+    },
+    {
+      "src": "/favicon.svg",
+      "dest": "frontend/favicon.svg"
+    },
+    {
+      "src": "/icons.svg",
+      "dest": "frontend/icons.svg"
+    },
+    {
+      "src": "/((?!api/).*\\.[a-zA-Z0-9]+)",
+      "dest": "frontend/$1"
     },
     {
       "src": "/(.*)",
